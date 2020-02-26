@@ -2,7 +2,8 @@
     "name": "pxt-kitronik-zipleds",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "radio": "*",
+        "ws2812b": "github:KitronikLtd/pxt-ws2812b#v0.0.5"
     },
     "files": [
         "README.md",
@@ -15,5 +16,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
