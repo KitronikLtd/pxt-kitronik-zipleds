@@ -271,7 +271,7 @@
     //% weight=99 blockGap=8
     //% trackArgs=0,2
     //% blockSetVariable=zipLEDs
-    export function createZIPLED(numZips: number): ZipLED {
+    export function createZIPLED(numZips: number, ZipLED: any) {
         let zipLEDs = new ZipLED();
         zipLEDs.buf = pins.createBuffer(numZips * 3);
         zipLEDs.start = 0;
