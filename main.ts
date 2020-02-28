@@ -262,25 +262,25 @@
         }
     }
 
-    /**
-     * Create a new ZIP LED driver for concatable kitronik board.
-	 * @param numZips number of leds in the strip, eg: 4
-     */
-    //% blockId="kitronik_zipleds_create" 
-    //% block="board with %numZips|ZIP LEDs"
-    //% weight=99 blockGap=8
-    //% trackArgs=0,2
-    //% blockSetVariable=zipLEDs
-    export function createZIPLED(numZips: number, ZipLED: any) {
-        let zipLEDs = new ZipLED();
-        zipLEDs.buf = pins.createBuffer(numZips * 3);
-        zipLEDs.start = 0;
-        zipLEDs._length = numZips;
-        zipLEDs.setBrightness(128)
-        zipLEDs.pin = DigitalPin.P8;
-        pins.digitalWritePin(zipLEDs.pin, 8);
-        return zipLEDs;
-    }
+    ///**
+    // * Create a new ZIP LED driver for concatable kitronik board.
+	// * @param numZips number of leds in the strip, eg: 4
+    // */
+    ////% blockId="kitronik_zipleds_create" 
+    ////% block="board with %numZips|ZIP LEDs"
+    ////% weight=99 blockGap=8
+    ////% trackArgs=0,2
+    ////% blockSetVariable=zipLEDs
+    //export function createZIPLED(numZips: number): ZipLED {
+    //    let zipLEDs = new ZipLED();
+    //    zipLEDs.buf = pins.createBuffer(numZips * 3);
+    //    zipLEDs.start = 0;
+    //    zipLEDs._length = numZips;
+    //    zipLEDs.setBrightness(128)
+    //    zipLEDs.pin = DigitalPin.P8;
+    //    pins.digitalWritePin(zipLEDs.pin, 8);
+    //    return zipLEDs;
+    //}
 
     /*  The LEDs we are using have centre wavelengths of 470nm (Blue) 525nm(Green) and 625nm (Red) 
     * 	 We blend these linearly to give the impression of the other wavelengths. 
