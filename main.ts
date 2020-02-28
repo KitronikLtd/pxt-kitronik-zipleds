@@ -26,6 +26,12 @@
             Black = 0x000000
         }
 
+    export class canYouSeeMe {
+        hello(){
+            
+        }
+    }
+
     export class ZipLED {
         buf: Buffer;
         pin: DigitalPin;
