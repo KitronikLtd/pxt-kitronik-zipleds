@@ -185,12 +185,6 @@
             this.setPixelRGB(zipLedNum >> 0, rgb >> 0);
         }
 
-        /**
-         * Send all the changes to the ZIP LEDs.
-         */
-        //% blockId="kitronik_zipleds_display_show" 
-        //% block="%zipLEDs|show" blockGap=8
-        //% weight=96
         show() {
             //use the Kitronik version which respects brightness for all 
             ws2812b.sendBuffer(this.buf, this.pin, this.brightness);
