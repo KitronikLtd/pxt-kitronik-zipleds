@@ -20,20 +20,10 @@
             Violet = 0x8a2be2,
             //% block=purple
             Purple = 0xFF00FF,
-            //% block=white
             White = 0xFFFFFF,
             //% block=black
             Black = 0x000000
         }
-
-    export function hiya() {
-    }
-
-    export class canYouSeeMe {
-        hello(){
-            
-        }
-    }
 
     export class ZipLED {
         buf: Buffer;
@@ -105,12 +95,12 @@
             this.show();
         }
 
-		/**
-         * Displays a vertical bar graph based on the `value` and `high` value.
-         * If `high` is 0, the chart gets adjusted automatically.
-         * @param value current value to plot
-         * @param high maximum value, eg: 255
-         */
+		 //
+         // Displays a vertical bar graph based on the `value` and `high` value.
+         // If `high` is 0, the chart gets adjusted automatically.
+         // @param value current value to plot
+         // @param high maximum value, eg: 255
+         //
         showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
@@ -140,41 +130,39 @@
             this.show();
         }
 
-        /**
-         * Rotate LEDs forward.
-         * You need to call ``show`` to make the changes visible.
-         * @param offset number of ZIP LEDs to rotate forward, eg: 1
-         */
+        //
+        // Rotate LEDs forward.
+        // You need to call ``show`` to make the changes visible.
+        // @param offset number of ZIP LEDs to rotate forward, eg: 1
+        //
         rotate(offset: number = 1): void {
             this.buf.rotate(-offset * 3, this.start * 3, this._length * 3)
         }
-    	/**
-         * Sets whole ZIP LEDs as a given color (range 0-255 for r, g, b). Call Show to make changes visible 
-         * @param rgb RGB color of the LED
-         */
-        //% blockId="kitronik_zipleds_display_only_set_strip_color" 
-        //% block="%zipLEDs|set color %rgb=kitronik_zipleds_colors"
-        //% weight=99 blockGap=8
+        
+    	//
+        // Sets whole ZIP LEDs as a given color (range 0-255 for r, g, b). Call Show to make changes visible 
+        // @param rgb RGB color of the LED
+        //
         setColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
         }
-    	/**
-         * Shows whole ZIP LEDs as a given color (range 0-255 for r, g, b). 
-         * @param rgb RGB color of the LED
-         */
+    	//
+        // Shows whole ZIP LEDs as a given color (range 0-255 for r, g, b). 
+        // @param rgb RGB color of the LED
+        //
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
             this.show();
         }
 
-        /**
-         * Set particular ZIP LED on the board to a given color. 
-         * You need to call ``show changes`` to make the changes visible.
-         * @param zipLedNum position of the ZIP LED in the string
-         * @param rgb RGB color of the ZIP LED
-         */
+        //
+        // Set particular ZIP LED on the board to a given color. 
+        // You need to call ``show changes`` to make the changes visible.
+        // @param zipLedNum position of the ZIP LED in the string
+        // @param rgb RGB color of the ZIP LED
+        //
         setZipLedColor(zipLedNum: number, rgb: number): void {
             this.setPixelRGB(zipLedNum >> 0, rgb >> 0);
         }
@@ -184,18 +172,18 @@
             ws2812b.sendBuffer(this.buf, this.pin, this.brightness);
         }
 
-        /**
-         * Turn off all LEDs on the ZIP LEDs.
-         * You need to call ``show`` to make the changes visible.
-         */
+        //
+        // Turn off all LEDs on the ZIP LEDs.
+        // You need to call ``show`` to make the changes visible.
+        //
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
         }
 
-        /**
-         * Set the brightness of all the ZIP LEDs. This flag only applies to future show operation.
-         * @param brightness a measure of LED brightness in 0-255. eg: 255
-         */
+        //
+        // Set the brightness of all the ZIP LEDs. This flag only applies to future show operation.
+        // @param brightness a measure of LED brightness in 0-255. eg: 255
+        //
         setBrightness(brightness: number): void {
             //Clamp incoming variable at 0-255 as values out of this range cause unexpected brightnesses as the lower level code only expects a byte.
             if (brightness < 0) {
@@ -243,43 +231,23 @@
         }
     }
 
-    ///**
-    // * Create a new ZIP LED driver for concatable kitronik board.
-	// * @param numZips number of leds in the strip, eg: 4
-    // */
-    ////% blockId="kitronik_zipleds_create" 
-    ////% block="board with %numZips|ZIP LEDs"
-    ////% weight=99 blockGap=8
-    ////% trackArgs=0,2
-    ////% blockSetVariable=zipLEDs
-    //export function createZIPLED(numZips: number): ZipLED {
-    //    let zipLEDs = new ZipLED();
-    //    zipLEDs.buf = pins.createBuffer(numZips * 3);
-    //    zipLEDs.start = 0;
-    //    zipLEDs._length = numZips;
-    //    zipLEDs.setBrightness(128)
-    //    zipLEDs.pin = DigitalPin.P8;
-    //    pins.digitalWritePin(zipLEDs.pin, 8);
-    //    return zipLEDs;
-    //}
-
     /*  The LEDs we are using have centre wavelengths of 470nm (Blue) 525nm(Green) and 625nm (Red) 
     * 	 We blend these linearly to give the impression of the other wavelengths. 
     *   as we cant wavelength shift an actual LED... (Ye canna change the laws of physics Capt)*/
 
-    /**
-     * Converts value to red, green, blue channels
-     * @param red value of the red channel between 0 and 255. eg: 255
-     * @param green value of the green channel between 0 and 255. eg: 255
-     * @param blue value of the blue channel between 0 and 255. eg: 255
-     */
+    //
+    // Converts value to red, green, blue channels
+    // @param red value of the red channel between 0 and 255. eg: 255
+    // @param green value of the green channel between 0 and 255. eg: 255
+    // @param blue value of the blue channel between 0 and 255. eg: 255
+    //
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
 
-    /**
-     * Gets the RGB value of a known color
-    */
+    //
+    // Gets the RGB value of a known color
+    //
     export function colors(color: ZipLedColors): number {
         return color;
     }
@@ -304,9 +272,9 @@
         return b;
     }
 
-    /**
-     * Converts a hue saturation luminosity value into a RGB color
-     */
+    //
+    // Converts a hue saturation luminosity value into a RGB color
+    //
     function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
@@ -343,9 +311,9 @@
         return packRGB(t, q, d);
     }
 
-    /**
-     * Options for direction hue changes, used by rainbow block (never visible to end user)
-     */
+    //
+    // Options for direction hue changes, used by rainbow block (never visible to end user)
+    //
     export enum HueInterpolationDirection {
         Clockwise,
         CounterClockwise,
