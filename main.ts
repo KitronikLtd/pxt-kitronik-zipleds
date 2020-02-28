@@ -48,9 +48,6 @@
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="kitronik_zipleds_rainbow"
-        //% block="%zipLEDs|show rainbow from %startHue|to %endHue"
-        //% weight=94 blockGap=8
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
@@ -114,9 +111,6 @@
          * @param value current value to plot
          * @param high maximum value, eg: 255
          */
-        //% weight=84 blockGap=8
-        //% blockId=kitronik_zipleds_show_bar_graph 
-        //% block="%zipLEDs|show bar graph of %value|up to %high"
         showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
@@ -151,9 +145,6 @@
          * You need to call ``show`` to make the changes visible.
          * @param offset number of ZIP LEDs to rotate forward, eg: 1
          */
-        //% blockId="kitronik_zipleds_display_rotate" 
-        //% block="%zipLEDs|rotate ZIP LEDs by %offset" 
-        //% weight=93 blockGap=8
         rotate(offset: number = 1): void {
             this.buf.rotate(-offset * 3, this.start * 3, this._length * 3)
         }
@@ -172,9 +163,6 @@
          * Shows whole ZIP LEDs as a given color (range 0-255 for r, g, b). 
          * @param rgb RGB color of the LED
          */
-        //% blockId="kitronik_zipleds_display_set_strip_color" 
-        //% block="%zipLEDs|show color %rgb=kitronik_zipleds_colors"
-        //% weight=99 blockGap=8
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -187,9 +175,6 @@
          * @param zipLedNum position of the ZIP LED in the string
          * @param rgb RGB color of the ZIP LED
          */
-        //% blockId="kitronik_zipleds_set_zip_color" 
-        //% block="%zipLEDs|set ZIP LED %zipLedNum|to %rgb=kitronik_zipleds_colors"
-        //% weight=98 blockGap=8
         setZipLedColor(zipLedNum: number, rgb: number): void {
             this.setPixelRGB(zipLedNum >> 0, rgb >> 0);
         }
@@ -203,9 +188,6 @@
          * Turn off all LEDs on the ZIP LEDs.
          * You need to call ``show`` to make the changes visible.
          */
-        //% blockId="kitronik_zipleds_display_clear"
-        //% block="%zipLEDs|clear"
-        //% weight=95 blockGap=8
         clear(): void {
             this.buf.fill(0, this.start * 3, this._length * 3);
         }
@@ -214,10 +196,6 @@
          * Set the brightness of all the ZIP LEDs. This flag only applies to future show operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
-        //% blockId="kitronik_zipleds_display_set_brightness"
-        //% block="%zipLEDs|set brightness %brightness" 
-        //% weight=92 blockGap=8
-        //% brightness.min=0 brightness.max=255
         setBrightness(brightness: number): void {
             //Clamp incoming variable at 0-255 as values out of this range cause unexpected brightnesses as the lower level code only expects a byte.
             if (brightness < 0) {
@@ -295,8 +273,6 @@
      * @param green value of the green channel between 0 and 255. eg: 255
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
-    //% weight=1 blockGap=8
-    //% blockId="kitronik_zipleds_rgb" block="red %red|green %green|blue %blue"
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
@@ -304,8 +280,6 @@
     /**
      * Gets the RGB value of a known color
     */
-    //% weight=2 blockGap=8
-    //% blockId="kitronik_zipleds_colors" block="%color"
     export function colors(color: ZipLedColors): number {
         return color;
     }
