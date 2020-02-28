@@ -26,6 +26,9 @@
             Black = 0x000000
         }
 
+    export function hiya() {
+    }
+
     export class canYouSeeMe {
         hello(){
             
